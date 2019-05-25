@@ -1,0 +1,27 @@
+package com.store.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+/**
+ * Admin
+ */
+@Entity
+@Table(
+    name = "admin"
+)
+@Getter
+@Setter
+@NoArgsConstructor
+public class Admin extends Person {
+
+    @Id
+    private String username;
+
+}
