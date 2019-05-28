@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class ProductMapper implements Mapper<ProductDTO, Product> {
 
     @Autowired
-    private CategoryMapper categoryMapper;
+    private Mapper<CategoryDTO, Category> categoryMapper;
 
     @Override
     public ProductDTO mapDto(Product entity) {

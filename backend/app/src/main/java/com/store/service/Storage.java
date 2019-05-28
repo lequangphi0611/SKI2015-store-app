@@ -12,6 +12,4 @@ public interface Storage {
 
     File storageFile(InputStream input, Path path) throws IOException;
 
-    boolean deleteFile(String filename);
-
 }

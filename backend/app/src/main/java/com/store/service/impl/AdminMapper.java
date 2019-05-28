@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class AdminMapper implements Mapper<AdminDTO,  Admin> {
 
     @Autowired
-    private PersonMapper personMapper;
+    private Mapper<PersonDTO, Person> personMapper;
 
     @Override
     public AdminDTO mapDto(Admin entity) {

@@ -11,22 +11,18 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("storage")
 public class StorageProperties {
 
-    private String uploadFolderPath = new StringBuffer(System.getProperty("user.dir"))
-            .append("/src/main/resources/static/image").toString();
+    private final String uploadFolderPath;
 
     public StorageProperties() {
+        this.uploadFolderPath = new StringBuffer(System.getProperty("user.dir"))
+                .append("/src/main/resources/static/image").toString();
         File uploadFolder = new File(uploadFolderPath);
-        if(!uploadFolder.mkdirs()) 
+        if (!uploadFolder.mkdirs())
             uploadFolder.mkdir();
     }
 
     public String getUploadFolderPath() {
         return this.uploadFolderPath;
     }
-
-    public void setUploadFolderPath(String uploadFolderPath) {
-        this.uploadFolderPath = uploadFolderPath;
-    }
-    
 
 }

@@ -22,10 +22,5 @@ public class SimpleStorage implements Storage {
         Files.copy(input, path, StandardCopyOption.REPLACE_EXISTING);
         return new File(path.toUri());
     }
-
-    @Override
-    public boolean deleteFile(String path) {
-        return new File(path).delete();
-    }
     
 }

@@ -1,7 +1,9 @@
 package com.store.service.impl;
 
 import com.store.entity.Customer;
+import com.store.entity.Person;
 import com.store.model.CustomerDTO;
+import com.store.model.PersonDTO;
 import com.store.service.Mapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class CustomerMapper implements Mapper<CustomerDTO, Customer> {
 
     @Autowired
-    private PersonMapper personMapper;
+    private Mapper<PersonDTO, Person> personMapper;
 
     @Override
     public CustomerDTO mapDto(Customer entity) {

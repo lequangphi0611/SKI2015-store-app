@@ -11,8 +11,12 @@ public interface CrudService<D, ID> {
 
     D getOneById(ID id);
 
-    D save(D d);
+    D save(D dto);
+
+    Collection<D> saveAll(Collection<D> dtos);
 
     void deleteById(ID id);
+
+    boolean existsByID(ID id);
     
 }

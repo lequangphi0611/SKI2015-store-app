@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public class AbstracCrudService<D, E, ID> implements CrudService<D, ID> {
 
-    protected JpaRepository<E, ID> repository;
+    protected final JpaRepository<E, ID> repository;
 
     @Autowired
     protected Mapper<D, E> mapper;
@@ -23,10 +23,7 @@ public class AbstracCrudService<D, E, ID> implements CrudService<D, ID> {
 
     @Override
     public Collection<D> findAll() {
-        return repository.findAll()
-                .stream()
-                .map(mapper::mapDto)
-                .collect(Collectors.toList());
+        return repository.findAll().stream().map(mapper::mapDto).collect(Collectors.toList());
     }
 
     @Override
@@ -35,8 +32,8 @@ public class AbstracCrudService<D, E, ID> implements CrudService<D, ID> {
     }
 
     @Override
-    public D save(D d) {
-        return mapper.mapDto(repository.save(mapper.mapEntity(d)));
+    public D save(D dto) {
+        return mapper.mapDto(repository.save(mapper.mapEntity(dto)));
     }
 
     @Override
@@ -44,5 +41,22 @@ public class AbstracCrudService<D, E, ID> implements CrudService<D, ID> {
         repository.deleteById(id);
     }
 
-    
+    @Override
+    public Collection<D> saveAll(Collection<D> dtos) {
+        Collection<E> entities = dtos
+                .stream()
+                .map(mapper::mapEntity)
+                .collect(Collectors
+                .toList());
+        return repository.saveAll(entities)
+                .stream()
+                .map(mapper::mapDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean existsByID(ID id) {
+        return repository.existsById(id);
+    }
+
 }

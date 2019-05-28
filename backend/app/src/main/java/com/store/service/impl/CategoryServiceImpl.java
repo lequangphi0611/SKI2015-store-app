@@ -16,7 +16,7 @@ public class CategoryServiceImpl extends AbstracCrudService<CategoryDTO, Categor
     @Autowired
     public CategoryServiceImpl(CategoryRepository repository) {
         super(repository);
-        this.categoryRepository = repository;
+        this.categoryRepository = (CategoryRepository) super.repository;
     }
 
     @Override
