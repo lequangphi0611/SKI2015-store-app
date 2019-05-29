@@ -18,10 +18,14 @@ public class InvoiceDTO {
 
     private CustomerDTO customer;
 
+    private Set<DetailedInvoiceDTO> detailedInvoices;
+
     public InvoiceDTO(String id, Date paymentDate, CustomerDTO customer) {
         this.id = id;
         this.paymentDate = paymentDate;
         this.customer = customer;
     }
+
+    
 
 }

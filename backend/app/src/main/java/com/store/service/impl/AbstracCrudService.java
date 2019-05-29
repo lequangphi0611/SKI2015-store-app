@@ -3,12 +3,15 @@ package com.store.service.impl;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import com.store.service.CrudService;
 import com.store.service.Mapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+@Transactional
 public class AbstracCrudService<D, E, ID> implements CrudService<D, ID> {
 
     protected final JpaRepository<E, ID> repository;

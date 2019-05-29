@@ -1,5 +1,6 @@
 package com.store.entity;
 
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -56,5 +57,16 @@ public class Customer extends Person{
         fetch = FetchType.LAZY
     )
     private Set<Invoice> invoices;
+
+	public Customer(String lastname, String fistname, Date birthday, String avartarPath, String password, long id,
+			String email, String address, String phoneNumber, Set<Invoice> invoices) {
+		super(lastname, fistname, birthday, avartarPath, password);
+		this.id = id;
+		this.email = email;
+		this.address = address;
+		this.phoneNumber = phoneNumber;
+		this.invoices = invoices;
+	}
+
     
 }

@@ -8,7 +8,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -17,7 +16,6 @@ import lombok.Setter;
 @MappedSuperclass
 @Getter
 @Setter
-@NoArgsConstructor
 public class Person {
 
     @Column(
@@ -44,5 +42,17 @@ public class Person {
         nullable = false
     )
     private String password;
+
+    public Person(String lastname, String fistname, Date birthday, String avartarPath, String password) {
+        this.lastname = lastname;
+        this.fistname = fistname;
+        this.birthday = birthday;
+        this.avartarPath = avartarPath;
+        this.password = password;
+    }
+
+    public Person(){
+        
+    }
     
 }

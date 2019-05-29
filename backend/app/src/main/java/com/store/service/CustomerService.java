@@ -7,5 +7,8 @@ import com.store.model.CustomerDTO;
  */
 public interface CustomerService extends CrudService<CustomerDTO, Long> {
 
+    boolean existsByEmail(String email);
+
+    CustomerDTO findByEmail(String email);
     
 }

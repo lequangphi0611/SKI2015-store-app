@@ -3,6 +3,8 @@ package com.store.service.impl;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import com.store.entity.Product;
 import com.store.model.ProductDTO;
 import com.store.respository.ProductRepository;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class ProductServiceImpl extends AbstracCrudService<ProductDTO, Product, Long> implements ProductService {
 
     private ProductRepository productRepository;

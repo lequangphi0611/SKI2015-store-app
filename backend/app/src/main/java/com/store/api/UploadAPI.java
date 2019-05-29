@@ -1,30 +1,23 @@
 package com.store.api;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-
-import javax.servlet.http.HttpServletRequest;
 
 import com.store.exception.FileContentTypeNotAcceptedException;
 import com.store.service.Storage;
 import com.store.service.StorageProperties;
+import com.store.util.ResponseUpload;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * UploadAPI
@@ -62,19 +55,23 @@ public class UploadAPI {
     }
 
     @PostMapping(value = "/storage/upload")
-    public ResponseEntity<File> upload(@RequestBody MultipartFile file, @RequestParam(required = false) String fileName)
-            throws IOException, FileContentTypeNotAcceptedException {
+    public ResponseEntity<ResponseUpload> upload(@RequestBody MultipartFile file,
+            @RequestParam(required = false) String fileName) throws IOException, FileContentTypeNotAcceptedException {
 
-        if (matchAcceptImageType(file.getContentType())) {
-            String filename = getFilenameFrom(file, fileName);
-            String path = storageProperties.getUploadFolderPath() + File.separator + filename;
-            return new ResponseEntity<>(storage.storageFile(file.getInputStream(), Paths.get(path)), HttpStatus.OK);
+        if (!matchAcceptImageType(file.getContentType())) {
+            StringBuilder builderMessage = new StringBuilder("File with Content-type = '");
+            builderMessage.append(file.getContentType());
+            builderMessage.append("' is not accepted !. File must have Content-type = '");
+            builderMessage.append(String.join(", ", ACCEPT_IMAGE_TYPE));
+            throw new FileContentTypeNotAcceptedException(builderMessage.toString());
         }
 
-        StringBuilder builderMessage = new StringBuilder("File with Content-type = '");
-        builderMessage.append(file.getContentType()).append("' is not accepted !. File must have Content-type = '")
-                .append(String.join(", ", ACCEPT_IMAGE_TYPE));
-        throw new FileContentTypeNotAcceptedException(builderMessage.toString());
+        String newFileName = getFilenameFrom(file, fileName);
+        String path = storageProperties.getUploadFolderPath() + File.separator + newFileName;
+        storage.storageFile(file.getInputStream(), Paths.get(path));
+        ResponseUpload response = new ResponseUpload(new StringBuilder(StorageProperties.RELATIVE_PATH)
+                .append("/").append(newFileName).toString());
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 }

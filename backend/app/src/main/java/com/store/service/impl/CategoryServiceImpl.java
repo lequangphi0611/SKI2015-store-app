@@ -1,5 +1,7 @@
 package com.store.service.impl;
 
+import javax.transaction.Transactional;
+
 import com.store.entity.Category;
 import com.store.model.CategoryDTO;
 import com.store.respository.CategoryRepository;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class CategoryServiceImpl extends AbstracCrudService<CategoryDTO, Category, Long> implements CategoryService {
 
     private CategoryRepository categoryRepository;

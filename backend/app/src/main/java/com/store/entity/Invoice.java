@@ -3,6 +3,7 @@ package com.store.entity;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -41,7 +42,8 @@ public class Invoice {
 
     @OneToMany(
         mappedBy = "invoice",
-        fetch = FetchType.LAZY
+        fetch = FetchType.LAZY,
+        cascade = CascadeType.ALL
     )
     private Set<DetailedInvoice> detailedInvoices;
 

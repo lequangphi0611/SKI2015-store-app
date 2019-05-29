@@ -27,20 +27,24 @@ public class ProductMapper implements Mapper<ProductDTO, Product> {
         product.setImagePath(entity.getImagePath());
         product.setPrice(entity.getPrice());
         product.setDescription(entity.getDescription());
-        product.setCategory(categoryMapper.mapDto(entity.getCategory()));
+        if(entity.getCategory() != null) {
+            product.setCategory(categoryMapper.mapDto(entity.getCategory()));
+        }
         return product;
     }
 
     @Override
     public Product mapEntity(ProductDTO dto) {
         Product product = new Product();
+        Category category = new Category();
+        category.setId(dto.getCategory().getId());
         product.setId(dto.getId());
         product.setName(dto.getName());
         product.setManufactureDate(dto.getManufactureDate());
         product.setImagePath(dto.getImagePath());
         product.setPrice(dto.getPrice());
         product.setDescription(dto.getDescription());
-        product.setCategory(categoryMapper.mapEntity(dto.getCategory()));
+        product.setCategory(category);
         return product;
     }
 

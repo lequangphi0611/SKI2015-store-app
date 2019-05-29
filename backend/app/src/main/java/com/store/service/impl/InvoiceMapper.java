@@ -27,9 +27,12 @@ public class InvoiceMapper implements Mapper<InvoiceDTO, Invoice> {
     @Override
     public Invoice mapEntity(InvoiceDTO dto) {
         Invoice invoice = new Invoice();
+        Customer customer = new Customer();
+        
+        customer.setId(dto.getCustomer().getId());
         invoice.setId(dto.getId());
         invoice.setPaymentDate(dto.getPaymentDate());
-        invoice.setCustomer(customerMapper.mapEntity(dto.getCustomer()));
+        invoice.setCustomer(customer);
         return invoice;
     }
 

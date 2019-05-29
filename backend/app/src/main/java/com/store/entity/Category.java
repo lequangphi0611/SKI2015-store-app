@@ -2,7 +2,6 @@ package com.store.entity;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,7 +13,6 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -29,7 +27,6 @@ import lombok.Setter;
 )
 @Setter
 @Getter
-@NoArgsConstructor
 public class Category {
 
     @Id
@@ -51,6 +48,10 @@ public class Category {
     public Category(long id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public Category() {
+        
     }
     
     

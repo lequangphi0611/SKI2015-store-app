@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DetailedInvoiceRepository extends JpaRepository<DetailedInvoice, Long> {
 
-    
+    Iterable<DetailedInvoice> findByInvoiceId(String id);
 }

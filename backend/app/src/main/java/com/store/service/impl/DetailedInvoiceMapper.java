@@ -26,15 +26,23 @@ public class DetailedInvoiceMapper implements Mapper<DetailedInvoiceDTO, Detaile
         detailedInvoice.setId(entity.getId());
         detailedInvoice.setInvoice(invoiceMapper.mapDto(entity.getInvoice()));
         detailedInvoice.setProduct(productMapper.mapDto(entity.getProduct()));
+        detailedInvoice.setPrice(entity.getPrice());
+        detailedInvoice.setQuantity(entity.getQuantity());
         return detailedInvoice;
     }
 
     @Override
     public DetailedInvoice mapEntity(DetailedInvoiceDTO dto) {
         DetailedInvoice detailedInvoice = new DetailedInvoice();
+        Invoice invoice = new Invoice();
+        Product product = new Product();
+        invoice.setId(dto.getInvoice().getId());
+        product.setId(dto.getProduct().getId());
         detailedInvoice.setId(dto.getId());
-        detailedInvoice.setInvoice(invoiceMapper.mapEntity(dto.getInvoice()));
-        detailedInvoice.setProduct(productMapper.mapEntity(dto.getProduct()));
+        detailedInvoice.setInvoice(invoice);
+        detailedInvoice.setProduct(product);
+        detailedInvoice.setPrice(dto.getPrice());
+        detailedInvoice.setQuantity(dto.getQuantity());
         return detailedInvoice;
     }
 
