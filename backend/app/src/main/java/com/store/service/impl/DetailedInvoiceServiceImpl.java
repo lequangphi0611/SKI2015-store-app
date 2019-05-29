@@ -35,37 +35,29 @@ public class DetailedInvoiceServiceImpl extends AbstracCrudService<DetailedInvoi
 
     @Override
     public Collection<DetailedInvoiceDTO> findByInvoiceId(String id) {
-        return ((Collection<DetailedInvoice>) detailedInvoiceRepository.findByInvoiceId(id))
-                    .stream()
-                    .map(mapper::mapDto)
-                    .collect(Collectors.toSet());
+        return ((Collection<DetailedInvoice>) detailedInvoiceRepository.findByInvoiceId(id)).stream()
+                .map(mapper::mapDto).collect(Collectors.toSet());
     }
 
-
     private Function<DetailedInvoice, DetailedInvoiceDTO> mapDetailedInvoiceToDTO() {
-                return (detailedInvoice) -> {
-                    DetailedInvoiceDTO detailedInvoiceDTO = new DetailedInvoiceDTO();
-                    detailedInvoiceDTO.setId(detailedInvoice.getId());
-                    InvoiceDTO invoice = new InvoiceDTO();
-                    invoice.setId(detailedInvoice.getInvoice().getId());
-                    detailedInvoiceDTO.setInvoice(invoice);
-                    detailedInvoiceDTO.setProduct(productService.getOneById(detailedInvoice.getProduct().getId()));
-                    detailedInvoiceDTO.setPrice(detailedInvoice.getPrice());
-                    detailedInvoiceDTO.setQuantity(detailedInvoice.getQuantity());
-                    return detailedInvoiceDTO;
-                };
+        return (detailedInvoice) -> {
+            DetailedInvoiceDTO detailedInvoiceDTO = new DetailedInvoiceDTO();
+            detailedInvoiceDTO.setId(detailedInvoice.getId());
+            InvoiceDTO invoice = new InvoiceDTO();
+            invoice.setId(detailedInvoice.getInvoice().getId());
+            detailedInvoiceDTO.setInvoice(invoice);
+            detailedInvoiceDTO.setProduct(productService.getOneById(detailedInvoice.getProduct().getId()));
+            detailedInvoiceDTO.setPrice(detailedInvoice.getPrice());
+            detailedInvoiceDTO.setQuantity(detailedInvoice.getQuantity());
+            return detailedInvoiceDTO;
+        };
     }
 
     @Override
     public Collection<DetailedInvoiceDTO> saveAll(Collection<DetailedInvoiceDTO> dtos) {
-        List<DetailedInvoice> detailedInvoices = dtos
-            .stream()
-            .map(mapper::mapEntity)
-            .collect(Collectors.toList());
-        return detailedInvoiceRepository.saveAll(detailedInvoices)
-                    .stream()
-                    .map(mapDetailedInvoiceToDTO())
-                    .collect(Collectors.toSet());
+        List<DetailedInvoice> detailedInvoices = dtos.stream().map(mapper::mapEntity).collect(Collectors.toList());
+        return detailedInvoiceRepository.saveAll(detailedInvoices).stream().map(mapDetailedInvoiceToDTO())
+                .collect(Collectors.toSet());
     }
-            
+
 }

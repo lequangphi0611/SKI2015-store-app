@@ -48,11 +48,10 @@ public class InvoiceAPI {
         invoice.setId(generateInvoiceID(invoice.getPaymentDate()));
         InvoiceDTO invoiceSaved = invoiceService.save(invoice);
 
-        Set<DetailedInvoiceDTO> detailedInvoices = invoice.getDetailedInvoices().stream()
-                .map((detailedInvoice) -> {
-                    detailedInvoice.setInvoice(invoiceSaved);
-                    return detailedInvoice;
-                }).collect(Collectors.toSet());
+        Set<DetailedInvoiceDTO> detailedInvoices = invoice.getDetailedInvoices().stream().map((detailedInvoice) -> {
+            detailedInvoice.setInvoice(invoiceSaved);
+            return detailedInvoice;
+        }).collect(Collectors.toSet());
 
         detailedInvoices = (Set<DetailedInvoiceDTO>) detailedInvoiceService.saveAll(detailedInvoices);
         invoiceSaved.setDetailedInvoices(detailedInvoices);
