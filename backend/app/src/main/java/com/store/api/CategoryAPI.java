@@ -13,6 +13,7 @@ import com.store.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,8 +21,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/categories")
 public class CategoryAPI {
@@ -33,8 +36,8 @@ public class CategoryAPI {
     private ProductService productService;
 
     @GetMapping
-    public Collection<CategoryDTO> getCategories() {
-        return categoryService.findAll();
+    public ResponseEntity<Collection<CategoryDTO>> getCategories() {
+        return new ResponseEntity<Collection<CategoryDTO>>(categoryService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -43,7 +46,10 @@ public class CategoryAPI {
     }
 
     @GetMapping("/{id}/products")
-    public Collection<ProductDTO> getProductByCategoryId(@PathVariable long id) {
+    public Collection<ProductDTO> getProductByCategoryId(@PathVariable long id, @RequestParam(name = "q", required = false) String query) {
+        if(query != null && !query.isEmpty()) {
+            return productService.findAllByCategoryIdAndNameContaining(id, query);
+        }
         return productService.findAllByCategoryId(id);
     }
 

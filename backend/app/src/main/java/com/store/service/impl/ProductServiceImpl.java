@@ -29,13 +29,22 @@ public class ProductServiceImpl extends AbstracCrudService<ProductDTO, Product, 
     public boolean existsByName(String name) {
         return productRepository.existsByName(name);
     }
-    
+
     @Override
     public Collection<ProductDTO> findAllByCategoryId(long id) {
-        return productRepository.findAllByCategoryId(id)
-                    .stream()
-                    .map(mapper::mapDto)
-                    .collect(Collectors.toList());
+        return productRepository.findAllByCategoryId(id).stream().map(mapper::mapDto).collect(Collectors.toSet());
+    }
+
+    @Override
+    public Collection<ProductDTO> findAllByCategoryIdAndNameContaining(long id, String query) {
+        return productRepository.findAllByCategoryIdAndNameContaining(id, query).stream().map(mapper::mapDto)
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    public Collection<ProductDTO> findAllByNameContaining(String query) {
+        return productRepository.findAllByNameContaining(query).stream().map(mapper::mapDto)
+                .collect(Collectors.toSet());
     }
 
 }

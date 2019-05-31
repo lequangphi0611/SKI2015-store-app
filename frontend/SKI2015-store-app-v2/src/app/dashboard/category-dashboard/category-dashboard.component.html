@@ -1,0 +1,56 @@
+
+<div class="wizard-container" style="min-height: 100vh;">
+  <div
+    class="card wizard-card"
+    data-color="orange"
+    id="wizardProfile"
+    style="min-height: 100vh"
+  >
+    <form [formGroup]="formCategory" #myForm='ngForm' (submit)='onSubmit(myForm)'>
+      <div class="wizard-header">
+        <h3>
+          <b>BUILD</b> ADMIN <br />
+          <small>This information will let us know more about Category.</small>
+          <h4 class="info-text"><b>Category</b></h4>
+        </h3>
+      </div>
+
+      <div class="justify-content-center" style="margin-left: 200px">
+        <div class="col-sm-10 col-sm-offset-1">
+          <div class="form-group">
+            <label
+              >Name Category
+              <small>(required)</small>
+            </label>
+            <input [ngModel]="category.name" #nameControl formControlName="name" name="NameCategory" type="text" class="form-control" />
+          </div>
+        </div>
+        <div class="container col-12">
+          <button [disabled]='formCategory.invalid' type="submit" class="btn btn-danger col-2">save</button>
+          <button type="reset" (click)='init()' class="btn btn-danger" [hidden]='!editMode'>Cancle Edit Mode</button>
+        </div>
+        <br />
+        <table class="table">
+          <tr>
+            <th>No.</th>
+            <th>Name Category</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <tr *ngFor="let category of categories | async; let i = index">
+            <td>{{i + 1}}</td>
+            <td>{{category.name}}</td>
+            <td>
+              <button (click)='enableEditMode(category); nameControl.focus()' type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-danger" (click)='delete(category.id)'>
+                <i class="fas fa-trash "></i>
+              </button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </form>
+  </div>
+</div>

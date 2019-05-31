@@ -1,0 +1,22 @@
+@import "../../../assets/dashboard/css/paper-dashboard.css";
+
+@import "../../../assets/dashboard/demo/demo.css";
+
+@import "../../../assets/dashboard/css/poly.css";
+
+@import "../../../assets/dashboard/css/gsdk-bootstrap-wizard.css";
+
+
+.image-contain {
+  overflow: hidden;
+}
+
+.image-contain img{
+  width : auto;
+  max-height : 200px;
+}
+
+td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

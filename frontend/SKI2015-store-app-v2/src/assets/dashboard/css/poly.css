@@ -1,0 +1,75 @@
+@charset "utf-8";
+/* CSS Document */
+header {
+    height: 270px;
+    position: relative;
+}
+
+.shopping-mall > h1 {
+    position: absolute;
+    margin-top: 5px;
+    font-variant: small-caps;
+}
+
+.shopping-mall > h1 {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 50px;
+    color: white;
+    letter-spacing: 0.3px;
+    text-shadow: 0 0 2px black;
+    padding-bottom: 0px;
+    border-bottom: 1px dotted gray;
+    margin: 0px;
+}
+
+.shopping-mall > h5 {
+    margin-top: 70px;
+    letter-spacing: 0.5px;
+}
+
+.poly-cart {
+    margin-top: 5px;
+}
+
+.poly-cart ul {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+    font-variant: small-caps;
+}
+
+.poly-cart .card-header strong {
+    font-variant: small-caps;
+    font-size: larger;
+    text-shadow: 0 0 2px darkgray;
+}
+
+.poly-prod {
+    text-align: center;
+    padding: 5px;
+}
+
+.poly-prod .card-body img {
+    height: 150px;
+    max-width: 95%;
+}
+
+.carousel-iner img {
+    margin: 0 auto;
+    height: 300px;
+    max-width: 95%;
+}
+
+.img-thumbnail {
+    height: 50px;
+    max-width: 95%;
+}
+
+.a {
+    background-color: #9fcdff;
+    color: #fdffff !important;
+    border-radius: 5px;
+}
+
+
+
