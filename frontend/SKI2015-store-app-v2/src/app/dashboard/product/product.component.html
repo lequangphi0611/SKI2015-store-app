@@ -1,0 +1,118 @@
+<div class="wizard-container">
+  <div class="card wizard-card" data-color="orange">
+    <form action="" method="" name="frmBonus">
+      <div class="wizard-header">
+        <h3>
+          <b>BUILD</b> ADMIN <br />
+          <small>This information will let us know more about Product.</small>
+          <h4 class="info-text"><b>Product</b></h4>
+        </h3>
+      </div>
+
+      <div class="justify-content-center" style="margin-left: 200px">
+        <div class="row">
+          <div class="col-sm-4 col-sm-offset-1">
+            <div class="picture-container">
+              <div class="picture">
+                <img
+                  [src]="imageUrl"
+                  class="picture-src"
+                  id="wizardPicturePreview"
+                  title=""
+                />
+                <input type="file" (change)='onSelectFile($event.target.files[0])' id="wizard-picture"/>
+              </div>
+              <h6>{{imageUrl != defaultImgSrc ? 'Change Picture' : 'Choose Picture'}}</h6>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label
+                >Name
+                <small>(required)</small>
+              </label>
+              <input
+                name="firstname"
+                type="text"
+                class="form-control"
+                placeholder="Andrew..."
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label
+                >Date
+                <small>(required)</small>
+              </label>
+              <input name="date" type="date" class="form-control" />
+            </div>
+          </div>
+          <div class="col-sm-10 mt-4 col-sm-offset-1">
+            <div class="form-group">
+              <label>Category</label><br />
+              <select name="country" class="form-control">
+                <option
+                  *ngFor="let category of categories"
+                  [value]="category.id"
+                >
+                  {{ category.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-10 col-sm-offset-1">
+            <div class="form-group">
+              <label
+                >Price
+                <small>(required)</small>
+              </label>
+              <input
+                name="number"
+                type="text"
+                class="form-control"
+                required=""
+              />
+            </div>
+          </div>
+          <div class="col-sm-10 col-sm-offset-1">
+            <div class="form-group">
+              <label
+                >Description
+                <small>(required)</small>
+              </label>
+              <input
+                name="email"
+                type="text"
+                class="form-control"
+                placeholder="Abc@gmail.com"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="margin: 10px;margin-left: 40%">
+        <button class="btn btn-danger">save</button>
+        <button class="btn btn-danger">update</button>
+        <button class="btn btn-danger">delete</button>
+        <button class="btn btn-danger">new</button>
+      </div>
+      <br />
+      <table class="table">
+        <tr>
+          <th>ID</th>
+          <th>Name Product</th>
+          <th>Description</th>
+          <th>price</th>
+          <th>Category</th>
+        </tr>
+        <tr>
+          <td>sdvsd</td>
+          <td>vdsv</td>
+          <td>sdv</td>
+          <td>sdv</td>
+          <td>sdv</td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>

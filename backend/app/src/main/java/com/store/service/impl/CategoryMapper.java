@@ -6,7 +6,7 @@ import com.store.service.Mapper;
 
 import org.springframework.stereotype.Service;
 
-@Service(value = "cateoryMapper")
+@Service
 public class CategoryMapper implements Mapper<CategoryDTO, Category> {
 
     @Override
