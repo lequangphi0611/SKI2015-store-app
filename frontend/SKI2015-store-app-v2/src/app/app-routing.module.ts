@@ -1,9 +1,11 @@
+
 import { ProductHomeComponent } from './home/product-home/product-home.component';
 import { ProductDetailComponent } from './home/product-detail/product-detail.component';
 import { UserComponent } from './dashboard/user/user.component';
 import { CategoryDashboardComponent } from './dashboard/category-dashboard/category-dashboard.component';
 import { ProductComponent } from './dashboard/product/product.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+
 import { RegisterComponent } from './home/register/register.component';
 import { LoginComponent } from './home/login/login.component';
 import { MainComponent } from './home/main/main.component';

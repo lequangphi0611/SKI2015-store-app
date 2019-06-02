@@ -1,3 +1,4 @@
+
 import { Observable } from 'rxjs';
 import { UploadImageService } from './../../service/upload-image/upload-image.service';
 import { FormGroup, FormBuilder, NgForm, Validators } from '@angular/forms';
@@ -110,6 +111,7 @@ export class ProductComponent implements OnInit {
   }
 
   readImage(file: File) {
+
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = (event) => {
