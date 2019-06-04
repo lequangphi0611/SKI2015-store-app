@@ -6,17 +6,3 @@
 
 @import "../../../assets/dashboard/css/gsdk-bootstrap-wizard.css";
 
-
-.image-contain {
-  overflow: hidden;
-}
-
-.image-contain img{
-  width : auto;
-  max-height : 200px;
-}
-
-td {
-  overflow: hidden;
-  text-overflow: ellipsis;
-}

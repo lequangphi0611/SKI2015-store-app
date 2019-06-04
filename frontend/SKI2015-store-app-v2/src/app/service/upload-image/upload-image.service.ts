@@ -20,6 +20,9 @@ export class UploadImageService {
     while (filename.indexOf(" ") > -1) {
       filename = filename.replace(" ", "-");
     }
+    while (filename.indexOf("/") > -1) {
+      filename = filename.replace("/", "");
+    }
     return this.http.post<ResponseUpload>(this.URL_REQUEST, fb, {
       params: {
         fileName : filename

@@ -2,3 +2,18 @@
 .ng-invalid.ng-touched {
   border-color : red !important;
 }
+
+.image-contain {
+  overflow: hidden;
+  max-width: 10em;
+}
+
+.image-contain img{
+  max-width : 8em;
+  border: none !important;
+}
+
+td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

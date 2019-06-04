@@ -16,28 +16,7 @@
       <div class="justify-content-center" style="margin-left: 200px">
         <div class="row">
           <div class="col-sm-4 col-sm-offset-1">
-            <div class="picture-container">
-              <div class="picture">
-                <img
-                  [src]="imageUrl"
-                  class="picture-src"
-                  id="wizardPicturePreview"
-                  title=""
-                />
-                <input
-                  type="file"
-                  (change)="onSelectFile($event.target.files[0])"
-                  id="wizard-picture"
-                />
-              </div>
-              <h6>
-                {{
-                  imageUrl != defaultImgSrc
-                    ? "Change Picture"
-                    : "Choose Picture"
-                }}
-              </h6>
-            </div>
+            <app-image-choose (onChangeImage)="onSelectFile($event)"></app-image-choose>
           </div>
           <div class="col-sm-6">
             <div class="form-group">

@@ -2,6 +2,7 @@ package com.store.entity;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -41,7 +42,8 @@ public class Category {
 
     @OneToMany(
         mappedBy = "category",
-        fetch = FetchType.LAZY
+        fetch = FetchType.LAZY,
+        cascade = CascadeType.REMOVE
     )
     private Set<Product> products;
 

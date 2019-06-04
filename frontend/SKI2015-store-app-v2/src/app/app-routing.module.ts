@@ -1,3 +1,8 @@
+import { AdminGuard } from './auth/admin.guard';
+import { AuthGuardGuard } from './auth/auth-guard.guard';
+import { RegisterComponent } from './register/register.component';
+
+import { LoginComponent } from './login/login.component';
 
 import { ProductHomeComponent } from './home/product-home/product-home.component';
 import { ProductDetailComponent } from './home/product-detail/product-detail.component';
@@ -6,8 +11,6 @@ import { CategoryDashboardComponent } from './dashboard/category-dashboard/categ
 import { ProductComponent } from './dashboard/product/product.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
-import { RegisterComponent } from './home/register/register.component';
-import { LoginComponent } from './home/login/login.component';
 import { MainComponent } from './home/main/main.component';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
@@ -17,18 +20,11 @@ const routes: Routes = [
   {
     path : 'home',
     component : HomeComponent,
+    canActivate: [AuthGuardGuard],
     children : [
       {
         path : 'index',
         component : MainComponent
-      },
-      {
-        path : 'login',
-        component : LoginComponent
-      },
-      {
-        path : 'register',
-        component : RegisterComponent
       },
       {
         path : 'products',
@@ -48,6 +44,7 @@ const routes: Routes = [
   {
     path : 'dashboard',
     component  : DashboardComponent,
+    canActivate : [AuthGuardGuard, AdminGuard],
     children : [
       {
         path : 'product',
@@ -67,6 +64,14 @@ const routes: Routes = [
         pathMatch : 'full'
       }
     ]
+  },
+  {
+    path : 'login',
+    component: LoginComponent
+  },
+  {
+    path : 'register',
+    component: RegisterComponent
   },
   {
     path : '',

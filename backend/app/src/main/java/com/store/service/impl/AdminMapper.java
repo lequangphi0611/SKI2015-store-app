@@ -18,6 +18,7 @@ public class AdminMapper implements Mapper<AdminDTO, Admin> {
         admin.setBirthday(entity.getBirthday());
         admin.setPassword(entity.getPassword());
         admin.setUsername(entity.getUsername());
+        admin.setId(entity.getId());
         return admin;
     }
 
@@ -30,6 +31,7 @@ public class AdminMapper implements Mapper<AdminDTO, Admin> {
         admin.setBirthday(dto.getBirthday());
         admin.setPassword(dto.getPassword());
         admin.setUsername(dto.getUsername());
+        admin.setId(dto.getId());
         return admin;
     }
 

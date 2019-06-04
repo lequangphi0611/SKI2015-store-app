@@ -1,3 +1,7 @@
+import { LoginComponent } from './login/login.component';
+import { UserInfoStorageService } from './service/user-info/user-info-storage.service';
+import { CustomerService } from './service/customer/customer.service';
+import { AdminService } from './service/admin/admin.service';
 import { ProductService } from './service/product/product.service';
 import { UploadImageService } from './service/upload-image/upload-image.service';
 import { CategoryService } from './service/category.service';
@@ -11,8 +15,6 @@ import { HomeComponent } from './home/home.component';
 import { HomeHeaderComponent } from './home/home-header/home-header.component';
 import { HomeFooterComponent } from './home/home-footer/home-footer.component';
 import { MainComponent } from './home/main/main.component';
-import { LoginComponent } from './home/login/login.component';
-import { RegisterComponent } from './home/register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductComponent } from './dashboard/product/product.component';
 import { CategoryDashboardComponent } from './dashboard/category-dashboard/category-dashboard.component';
@@ -24,6 +26,8 @@ import { SideBarComponent } from './dashboard/side-bar/side-bar.component';
 import { ShowProductComponent } from './home/show-product/show-product.component';
 import { ProductDetailComponent } from './home/product-detail/product-detail.component';
 import { ProductHomeComponent } from './home/product-home/product-home.component';
+import { ImageChooseComponent } from './dashboard/image-choose/image-choose.component';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -35,7 +39,6 @@ import { ProductHomeComponent } from './home/product-home/product-home.component
     HomeFooterComponent,
     MainComponent,
     LoginComponent,
-    RegisterComponent,
     DashboardComponent,
     ProductComponent,
     CategoryDashboardComponent,
@@ -44,7 +47,9 @@ import { ProductHomeComponent } from './home/product-home/product-home.component
     SideBarComponent,
     ShowProductComponent,
     ProductDetailComponent,
-    ProductHomeComponent
+    ProductHomeComponent,
+    ImageChooseComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +62,10 @@ import { ProductHomeComponent } from './home/product-home/product-home.component
     CategoryService,
     UploadImageService,
     ProductService,
-    Title
+    Title,
+    AdminService,
+    CustomerService,
+    UserInfoStorageService
   ],
   bootstrap: [AppComponent]
 })

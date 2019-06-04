@@ -1,0 +1,23 @@
+<div class="container col-12">
+  <div class="container col-12 box">
+    <img
+      [src]="imageUrl$ | async"
+      class="img-fluid col-12"
+
+      id="wizardPicturePreview"
+      title=""
+      (click)="inputFile.click()"
+    />
+    <input
+      type="file"
+      (change)="onSelectFile($event.target.files[0])"
+      id="wizard-picture"
+      #inputFile
+    />
+  </div>
+  <p class='text-center m-2'>
+    {{
+      imageName$ | async
+    }}
+  </p>
+</div>

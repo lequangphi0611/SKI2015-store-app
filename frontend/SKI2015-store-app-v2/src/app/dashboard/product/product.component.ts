@@ -1,3 +1,4 @@
+import { ImageChooseComponent } from './../image-choose/image-choose.component';
 
 import { Observable } from 'rxjs';
 import { UploadImageService } from './../../service/upload-image/upload-image.service';
@@ -6,7 +7,7 @@ import { ProductService } from './../../service/product/product.service';
 import { Product } from './../../model/Product';
 import { CategoryService } from 'src/app/service/category.service';
 import { Category } from './../../model/Category';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-product',
@@ -15,15 +16,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductComponent implements OnInit {
 
-  readonly defaultImgSrc = "/assets/dashboard/img/catalog-default-img.gif.png";
+  @ViewChild(ImageChooseComponent) imageChooseComponent: ImageChooseComponent;
 
   categories: Observable<Category[]>;
 
   products: Observable<Product[]>;
 
   product: Product;
-
-  imageUrl: any;
 
   imageSelected: File;
 
@@ -40,7 +39,6 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.imageUrl = this.defaultImgSrc;
     this.fetchCategoties();
     this.fetchProducts();
     this.initForm();
@@ -76,8 +74,8 @@ export class ProductComponent implements OnInit {
   initEditMode({ enableEditMode, product }) {
     this.product = product;
     this.editMode = enableEditMode;
-    if (!enableEditMode) {
-      this.imageUrl = this.defaultImgSrc;
+    if(!enableEditMode) {
+      this.imageChooseComponent.reset();
     }
   }
 
@@ -107,16 +105,6 @@ export class ProductComponent implements OnInit {
 
   onSelectFile(file: File) {
     this.imageSelected = file;
-    this.readImage(file);
-  }
-
-  readImage(file: File) {
-
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = (event) => {
-      this.imageUrl = reader.result;
-    };
   }
 
   getProductFromFormGroup(): Product {
@@ -131,13 +119,11 @@ export class ProductComponent implements OnInit {
 
   async onSubmit(myForm: NgForm) {
     const product = this.getProductFromFormGroup();
-
     if (this.editMode) {
-      product.imagePath = this.imageUrl !== this.product.imagePath
+      product.imagePath = this.imageSelected
           ? await this.uploadFile(product.name)
           : this.product.imagePath;
       product.id = this.product.id;
-      console.log(product);
       await this.productService.updateProduct(product).toPromise();
     } else {
       product.imagePath = await this.uploadFile(product.name);
@@ -171,7 +157,8 @@ export class ProductComponent implements OnInit {
       enableEditMode: true,
       product
     });
-    this.imageUrl = product.imagePath;
+    this.imageChooseComponent.setImageUrl(product.imagePath);
+    this.imageChooseComponent.imageName.next(product.imagePath.substring(product.imagePath.lastIndexOf('/') + 1, product.imagePath.length));
   }
 
   reset() {

@@ -34,13 +34,13 @@ public class AdminApi {
 
     @GetMapping("/{username}")
     public AdminDTO getAdmin(@PathVariable String username) {
-        return adminService.getOneById(username);
+        return adminService.findeByUsername(username);
     }
 
     @PostMapping
     public AdminDTO create(@RequestBody AdminDTO admin) {
         
-        if(adminService.existsByID(admin.getUsername())) {
+        if(adminService.existsByUsername(admin.getUsername())) {
             throw new EntityDuplicateException(
                 new StringBuilder(Admin.class.getName())
                     .append(" with username = '")
@@ -53,25 +53,26 @@ public class AdminApi {
         return adminService.save(admin);
     }
 
-    @PutMapping("/{username}")
-    public AdminDTO update(@PathVariable String username, @RequestBody AdminDTO admin) {
+    @PutMapping("/{id}")
+    public AdminDTO update(@PathVariable long id, @RequestBody AdminDTO admin) {
 
-        if(!adminService.existsByID(username)) {
+        if(!adminService.existsByID(id)) {
             throw new EntityNotFoundException(
                 new StringBuilder(Admin.class.getName())
-                    .append(" width username '")
-                    .append(username)
+                    .append(" width id '")
+                    .append(id)
                     .append("' does not exists !")
                     .toString()
             );
         }
 
+        admin.setId(id);
         return adminService.save(admin);
     }
 
-    @DeleteMapping("/{username}")
-    public void delete(@PathVariable String username) {
-        adminService.deleteById(username);
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable long id) {
+        adminService.deleteById(id);
     }
      
 }

@@ -29,12 +29,7 @@ import lombok.Setter;
 )
 @Setter
 @Getter
-@NoArgsConstructor
 public class Customer extends Person{
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
 
     @Column(name = "email")
     private String email;
@@ -60,13 +55,17 @@ public class Customer extends Person{
 
 	public Customer(String lastname, String fistname, Date birthday, String avartarPath, String password, long id,
 			String email, String address, String phoneNumber, Set<Invoice> invoices) {
-		super(lastname, fistname, birthday, avartarPath, password);
-		this.id = id;
+        super(lastname, fistname, birthday, avartarPath, password);
+        super.setId(id);
 		this.email = email;
 		this.address = address;
 		this.phoneNumber = phoneNumber;
 		this.invoices = invoices;
-	}
+    }
+    
+    public Customer() {
+        super();
+    }
 
     
 }

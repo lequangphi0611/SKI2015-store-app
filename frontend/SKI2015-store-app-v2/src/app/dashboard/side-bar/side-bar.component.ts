@@ -1,3 +1,6 @@
+import { map } from 'rxjs/operators';
+import { Admin } from './../../model/Admin';
+import { UserInfoStorageService } from './../../service/user-info/user-info-storage.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideBarComponent implements OnInit {
 
-  constructor() { }
+  user: Admin;
+
+  constructor(private userInfoStorageService: UserInfoStorageService) { }
 
   ngOnInit() {
+    this.userInfoStorageService.user$
+      .pipe(
+        map(userInfo => userInfo.person),
+        map((person) => person as Admin)
+      )
+      .subscribe((admin) => this.user = admin);
   }
 
 }

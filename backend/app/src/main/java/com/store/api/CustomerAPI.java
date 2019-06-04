@@ -45,11 +45,6 @@ public class CustomerAPI {
         return customerService.findByEmail(email);
     }
 
-    @GetMapping("/{id}")
-    public CustomerDTO getCustomerById(@PathVariable long id) {
-        return customerService.getOneById(id);
-    }
-
     @GetMapping("/{id}/invoices")
     public Collection<InvoiceDTO> getInvoices(@PathVariable long id) {
         Set<InvoiceDTO> invoices = (Set<InvoiceDTO>) invoiceService.findByCustomerId(id);

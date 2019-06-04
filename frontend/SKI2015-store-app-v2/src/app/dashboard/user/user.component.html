@@ -1,118 +1,128 @@
 <div class="wizard-container">
-    <div class="card wizard-card" data-color="orange">
-        <form action="" method="" name="frmBonus" >
-            <div class="wizard-header">
-                <h3>
-                    <b>BUILD</b> ADMIN <br>
-                    <small>This information will let us know more about User.</small>
-                    <h4 class="info-text"><b>User</b></h4>
-                </h3>
-            </div>
+  <div class="card wizard-card" data-color="orange">
+    <form #myForm="ngForm" (ngSubmit)="onSubmit()" [formGroup]="userForm">
+      <div class="wizard-header">
+        <h3>
+          <b>BUILD</b> ADMIN <br />
+          <small>This information will let us know more about User.</small>
+          <h4 class="info-text"><b>User</b></h4>
+        </h3>
+      </div>
 
-            <div class="justify-content-center" style="margin-left: 200px">
-                <div class="row">
-                    <div class="col-sm-4 col-sm-offset-1">
-                        <div class="picture-container">
-                            <div class="picture">
-                                <img src="/assets/dashboard/img/default-avatar.png" class="picture-src"
-                                     id="wizardPicturePreview" title=""/>
-                                <input type="file" id="wizard-picture">
-                            </div>
-                            <h6>Choose Picture</h6>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Firs Name
-                                <small>(required)</small>
-                            </label>
-                            <input name="firstname" type="text" class="form-control"
-                                   placeholder="Andrew..." required>
-                        </div>
-                        <div class="form-group">
-                            <label>Last Name
-                                <small>(required)</small>
-                            </label>
-                            <input name="lasttname" type="text" class="form-control"
-                                   placeholder="Andrew..." required>
-                        </div>
-                        <div class="form-group">
-                            <label>Birth Day
-                                <small>(required)</small>
-                            </label>
-                            <input name="date" type="date" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-sm-10 col-sm-offset-1">
-                        <div class="form-group">
-                            <label>Pass Word
-                                <small>(required)</small>
-                            </label>
-                            <input name="password" type="password" class="form-control"
-                                   required="">
-                        </div>
-                    </div>
-                    <div class="col-sm-10 col-sm-offset-1">
-                        <div class="form-group">
-                            <label>Address
-                                <small>(required)</small>
-                            </label>
-                            <input name="Address" type="text" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-sm-10 col-sm-offset-1">
-                        <div class="form-group">
-                            <label>Email
-                                <small>(required)</small>
-                            </label>
-                            <input name="email" type="text" class="form-control"
-                                   placeholder="Abc@gmail.com">
-                        </div>
-                    </div>
-
-                    <div class="col-sm-10 col-sm-offset-1">
-                        <div class="form-group">
-                            <label>Phone Number
-                                <small>(required)</small>
-                            </label>
-                            <input name="phonenumber" type="text" class="form-control"
-                                   placeholder="0123654...">
-                        </div>
-                    </div>
-
-                </div>
+      <div class="justify-content-center" style="margin-left: 200px">
+        <div class="row">
+          <div class="col-sm-4 col-sm-offset-1">
+            <app-image-choose
+              (onChangeImage)="onSelectedImage($event)"
+            ></app-image-choose>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label
+                >First Name
+                <small>(required)</small>
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="firstname"
+                [ngModel]="(admin | async)?.firstname"
+              />
             </div>
-            <div style="margin: 10px;margin-left: 40%">
-                <button class="btn btn-danger">save</button>
-                <button class="btn btn-danger">update</button>
-                <button class="btn btn-danger">delete</button>
-                <button class="btn btn-danger">new</button>
+            <div class="form-group">
+              <label
+                >Last Name
+                <small>(required)</small>
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="lastname"
+                [ngModel]="(admin | async)?.lastname"
+              />
             </div>
-            <br>
-            <table class="table">
-                <tr>
-                    <th>ID</th>
-                    <th>fistName</th>
-                    <th>last Name</th>
-                    <th>birth day</th>
-                    <th>avatar</th>
-                    <th>pass</th>
-                    <th>address</th>
-                    <th>email</th>
-                    <th>phone number</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-        </form>
-    </div>
+            <div class="form-group">
+              <label
+                >Birth Day
+                <small>(required)</small>
+              </label>
+              <input
+                type="date"
+                class="form-control"
+                formControlName="birthday"
+                [ngModel]="(admin | async)?.birthday | date: 'yyyy-MM-dd'"
+              />
+            </div>
+          </div>
+          <div class="col-sm-10 col-sm-offset-1">
+            <div class="form-group">
+              <label
+                >Username
+                <small>(required)</small>
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="username"
+                [ngModel]="(admin | async)?.username"
+              />
+            </div>
+          </div>
+          <div class="col-sm-10 col-sm-offset-1">
+            <div class="form-group">
+              <label
+                >Password
+                <small>(required)</small>
+              </label>
+              <input
+                type="password"
+                class="form-control"
+                formControlName="password"
+                [ngModel]="(admin | async)?.password"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="margin: 10px;margin-left: 40%">
+        <button class="btn btn-lg btn-primary mr-1">
+          Save
+        </button>
+        <button type="reset" (click)="onReset()" class="btn btn-lg btn-default">
+          {{editMode ? 'Exit' : 'Reset'}}
+        </button>
+      </div>
+      <br />
+      <table class="table table-sm table-bordered">
+        <tr>
+          <th>Avatar</th>
+          <th>Fistname</th>
+          <th>Lastname</th>
+          <th>Birthday</th>
+          <th>Username</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let admin of admins$ | async">
+          <td class="image-contain"   style="max-width: 3em">
+            <img [src]="admin.avartarPath" class="img-fluid" alt="" />
+          </td>
+          <td>{{admin.firstname}}</td>
+          <td>{{admin.lastname}}</td>
+          <td>{{admin.birthday | date: 'dd/MM/yyyy'}}</td>
+          <td>{{admin.username}}</td>
+          <td>
+              <button type="button" (click)="enableEditMode(admin)"  class="btn btn-warning">
+                <i class="fas fa-edit"></i> Edit
+              </button>
+            </td>
+            <td>
+              <button type="button" (click)="delete(admin.id)" class="btn btn-danger">
+                <i class="fas fa-trash"></i> Del
+              </button>
+            </td>>
+        </tr>
+      </table>
+    </form>
+  </div>
 </div>
