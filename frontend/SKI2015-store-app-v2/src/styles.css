@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 .ng-invalid.ng-touched {
-  border-color : red !important;
+  border-color : #dc3545 !important;
 }
 
 .image-contain {
@@ -11,9 +11,4 @@
 .image-contain img{
   max-width : 8em;
   border: none !important;
-}
-
-td {
-  overflow: hidden;
-  text-overflow: ellipsis;
 }

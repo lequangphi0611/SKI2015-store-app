@@ -1,3 +1,4 @@
+import { CartComponent } from './home/cart/cart.component';
 import { AdminGuard } from './auth/admin.guard';
 import { AuthGuardGuard } from './auth/auth-guard.guard';
 import { RegisterComponent } from './register/register.component';
@@ -33,6 +34,10 @@ const routes: Routes = [
       {
         path : 'product/:id',
         component : ProductDetailComponent
+      },
+      {
+        path : 'cart',
+        component : CartComponent
       },
       {
         path : '',

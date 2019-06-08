@@ -1,3 +1,4 @@
+import { CartDataService } from './service/cart-data/cart-data.service';
 import { LoginComponent } from './login/login.component';
 import { UserInfoStorageService } from './service/user-info/user-info-storage.service';
 import { CustomerService } from './service/customer/customer.service';
@@ -28,6 +29,7 @@ import { ProductDetailComponent } from './home/product-detail/product-detail.com
 import { ProductHomeComponent } from './home/product-home/product-home.component';
 import { ImageChooseComponent } from './dashboard/image-choose/image-choose.component';
 import { RegisterComponent } from './register/register.component';
+import { CartComponent } from './home/cart/cart.component';
 
 
 
@@ -49,7 +51,8 @@ import { RegisterComponent } from './register/register.component';
     ProductDetailComponent,
     ProductHomeComponent,
     ImageChooseComponent,
-    RegisterComponent
+    RegisterComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +68,8 @@ import { RegisterComponent } from './register/register.component';
     Title,
     AdminService,
     CustomerService,
-    UserInfoStorageService
+    UserInfoStorageService,
+    CartDataService
   ],
   bootstrap: [AppComponent]
 })

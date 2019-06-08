@@ -1,0 +1,13 @@
+.add-to-cart-btn,
+a:not([href]):not([tabindex]) {
+  cursor: pointer;
+  color: white;
+}
+
+.add-to-cart-btn:hover,
+a:not([href]):not([tabindex]):focus,
+a:not([href]):not([tabindex]):hover {
+  color: black;
+}
+
+

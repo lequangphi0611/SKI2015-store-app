@@ -6,35 +6,155 @@
         <div class="login_box_img">
           <div class="hover">
             <h4>Already have an account?</h4>
-            <p>There are advances being made in science and technology everyday, and a good example of this is the</p>
-            <a class="button button-account" [routerLink]="['/login']">Login Now</a>
+            <p>
+              There are advances being made in science and technology everyday,
+              and a good example of this is the
+            </p>
+            <a class="button button-account" [routerLink]="['/login']"
+              >Login Now</a
+            >
           </div>
         </div>
       </div>
       <div class="col-lg-6">
         <div class="login_form_inner register_form_inner">
           <h3>Create an account</h3>
-          <form class="row login_form" action="#/" id="register_form" >
-            <div class="col-md-12 form-group">
-              <input type="text" class="form-control" id="name" name="name" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
-            </div>
-            <div class="col-md-12 form-group">
-              <input type="text" class="form-control" id="email" name="email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'">
-            </div>
-            <div class="col-md-12 form-group">
-              <input type="text" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
-            </div>
-            <div class="col-md-12 form-group">
-              <input type="text" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'">
-            </div>
-            <div class="col-md-12 form-group">
-              <div class="creat_account">
-                <input type="checkbox" id="f-option2" name="selector">
-                <label for="f-option2">Keep me logged in</label>
+          <form
+            class="row login_form"
+            (ngSubmit)="onSubmit()"
+            [formGroup]="registerForm"
+          >
+            <div class="row form-group col-md-12 pr-0">
+              <div class="col pr-0">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="First Name"
+                  onfocus="this.placeholder = ''"
+                  onblur="this.placeholder = 'First Name'"
+                  formControlName="firstname"
+                />
+                <p
+                class="text-left text-danger"
+                *ngIf="firstname.touched && firstname.hasError('required')"
+              >
+                First name is required !
+              </p>
+              </div>
+              <div class="col pr-0">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Last Name"
+                  onfocus="this.placeholder = ''"
+                  onblur="this.placeholder = 'Last Name'"
+                  formControlName="lastname"
+                />
+                <p
+                class="text-left text-danger"
+                *ngIf="lastname.touched && lastname.hasError('required')"
+              >
+                Last name is required !
+              </p>
               </div>
             </div>
+            <div class="form-group col-md-12">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Birthday"
+                onfocus="this.placeholder = ''; this.type='date'"
+                onblur="if(!this.value) {this.type='text'; this.placeholder = 'Birthday'}"
+                formControlName="birthday"
+              />
+              <p
+                class="text-left text-danger"
+                *ngIf="birthday.touched && birthday.hasError('required')"
+              >
+                Birthday is required !
+              </p>
+            </div>
             <div class="col-md-12 form-group">
-              <button type="submit" value="submit" class="button button-register w-100">Register</button>
+              <input
+                type="text"
+                class="form-control"
+                id="email"
+                name="email"
+                placeholder="Email Address"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Email Address'"
+                formControlName="email"
+              />
+              <p
+                class="text-left text-danger"
+                *ngIf="email.touched && email.hasError('required')"
+              >
+                Password is required !
+              </p>
+              <p
+                class="text-left text-danger"
+                *ngIf="!email.hasError('required') && email.hasError('email')"
+              >
+                Email does not match the pattern(ex: example@gmail.com)
+              </p>
+              <p
+                class="text-left text-danger"
+                *ngIf="email.hasError('exists')"
+              >
+                Email with '{{email.value}}' is already exists !
+              </p>
+            </div>
+            <div class="col-md-12 form-group">
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+                placeholder="Password"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Password'"
+                formControlName="password"
+              />
+              <p
+                class="text-left text-danger"
+                *ngIf="password.touched && password.hasError('required')"
+              >
+                Password is required !
+              </p>
+            </div>
+            <div class="col-md-12 form-group">
+              <input
+                type="password"
+                class="form-control"
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Confirm Password'"
+                formControlName="confirm"
+              />
+              <p
+                class="text-left text-danger"
+                *ngIf="confirm.touched && confirm.hasError('required')"
+              >
+                You have to confirm the password!
+              </p>
+              <p
+                class="text-left text-danger"
+                *ngIf="registerForm.hasError('notSame')"
+              >
+                Confirm password does not match !
+              </p>
+            </div>
+            <div class="col-md-12 form-group">
+              <button
+                [disabled]="registerForm.invalid"
+                type="submit"
+                value="submit"
+                class="button button-register w-100"
+              >
+                Register
+              </button>
             </div>
           </form>
         </div>

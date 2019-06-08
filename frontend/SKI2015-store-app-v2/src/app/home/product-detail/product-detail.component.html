@@ -30,8 +30,9 @@
               value="1"
               title="Quantity:"
               class="input-text qty mr-3"
+              #quantity
             />
-            <a class="button primary-btn" href="#">Add to Cart</a>
+            <a class="button primary-btn add-to-cart-btn" (click)="addToCart(quantity)">Add to Cart</a>
           </div>
         </div>
       </div>

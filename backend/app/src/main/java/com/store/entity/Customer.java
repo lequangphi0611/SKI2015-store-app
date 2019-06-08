@@ -35,13 +35,13 @@ public class Customer extends Person{
     private String email;
 
     @Column(
-        nullable = false,
+        nullable = true,
         columnDefinition = "nvarchar(255)"
     )
     private String address;
 
     @Column(
-        nullable = false,
+        nullable = true,
         length = 13,
         name = "phone_number"
     )

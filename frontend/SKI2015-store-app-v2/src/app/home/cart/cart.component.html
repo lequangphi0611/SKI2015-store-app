@@ -1,0 +1,107 @@
+<!--================Cart Area =================-->
+<section class="cart_area">
+  <div class="container">
+    <div class="cart_inner">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">Price</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of cart.data">
+              <td>
+                <div
+                  (click)="showDetail(item.product.id)"
+                  class="media"
+                  style="cursor: pointer; max-width: 400px;"
+                >
+                  <div class="d-flex col-4">
+                    <img
+                      [src]="item.product.imagePath"
+                      class="img-fluid"
+                      alt=""
+                      style="height: auto"
+                    />
+                  </div>
+                  <div class="media-body">
+                    <p>{{ item.product.name }}</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <h5>{{ item.product.price | currency }}</h5>
+              </td>
+              <td>
+                <div class="product_count">
+                  <form
+                    (ngSubmit)="changeQuantity(item.product, quantity.value)"
+                  >
+                    <input
+                      type="text"
+                      name="qty"
+                      id="sst"
+                      maxlength="12"
+                      [value]="item.quantity"
+                      title="Quantity:"
+                      class="input-text qty"
+                      #quantity
+                      (blur)="changeQuantity(item.product, quantity.value)"
+                    />
+                    <button
+                      type="button"
+                      class="increase items-count"
+                      (click)="updateCartItem(item.product, 1)"
+                      type="button"
+                    >
+                      <i class="fas fa-chevron-up"></i>
+                    </button>
+                    <button
+                      type="button"
+                      class="reduced items-count"
+                      (click)="updateCartItem(item.product, -1)"
+                      type="button"
+                    >
+                      <i class="fas fa-chevron-down"></i>
+                    </button>
+                  </form>
+                </div>
+              </td>
+              <td>
+                <h5>{{ item.quantity * item.product.price | currency }}</h5>
+              </td>
+            </tr>
+
+            <tr>
+              <td></td>
+              <td></td>
+              <td>
+                <h5>Subtotal</h5>
+              </td>
+              <td>
+                <h5>{{ cart.total() | currency }}</h5>
+              </td>
+            </tr>
+
+            <tr class="out_button_area">
+              <td class="d-none-l"></td>
+              <td class=""></td>
+              <td></td>
+              <td>
+                <div class="checkout_btn_inner d-flex align-items-center">
+                  <a class="gray_btn" [routerLink]="['/home', 'products']" >Continue Shopping</a>
+                  <a class="primary-btn ml-2" href="#">Proceed to checkout</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+<!--================End Cart Area =================-->

@@ -1,10 +1,12 @@
-import { map, mergeMap } from 'rxjs/operators';
-import { Observable, Subscription } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
 import { ProductService } from 'src/app/service/product/product.service';
 import { Product } from './../../model/Product';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { CartDataService } from './../../service/cart-data/cart-data.service';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-product-detail',
@@ -17,10 +19,13 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
 
+  cartSubscription: Subscription;
+
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private title: Title
+    private title: Title,
+    private cartDataService: CartDataService
   ) {
    }
 
@@ -31,13 +36,16 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   fetchProduct() {
     this.subscription = this.route.params
       .pipe(
-        mergeMap((param) =>  this.productService.getProduct(param.id))
+        mergeMap((param) =>  this.productService.getProduct(param.id)),
       )
       .subscribe((product) => {
         this.title.setTitle(product.name);
         this.product = product;
       });
+  }
 
+  addToCart(quantityInput: NgModel) {
+    this.cartDataService.addItem({product: this.product, quantity: +quantityInput.value});
   }
 
   ngOnDestroy(): void {

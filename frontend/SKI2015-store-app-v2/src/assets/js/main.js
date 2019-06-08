@@ -7,7 +7,7 @@ $(function() {
   });
 
   //------- Active Nice Select --------//
-  $('select').niceSelect();
+  // $('select').niceSelect();
 
   //------- hero carousel -------//
   $(".hero-carousel").owlCarousel({
@@ -66,13 +66,13 @@ $(function() {
     dots:false
   });
 
-  //------- mailchimp --------//  
+  //------- mailchimp --------//
 	function mailChimp() {
 		$('#mc_embed_signup').find('form').ajaxChimp();
 	}
   mailChimp();
-  
-  //------- fixed navbar --------//  
+
+  //------- fixed navbar --------//
   $(window).scroll(function(){
     var sticky = $('.header_area'),
     scroll = $(window).scrollTop();
@@ -83,9 +83,9 @@ $(function() {
 
   //------- Price Range slider -------//
   if(document.getElementById("price-range")){
-  
+
     var nonLinearSlider = document.getElementById('price-range');
-    
+
     noUiSlider.create(nonLinearSlider, {
         connect: true,
         behaviour: 'tap',
@@ -99,21 +99,21 @@ $(function() {
             'max': [ 10000 ]
         }
     });
-  
-  
+
+
     var nodes = [
         document.getElementById('lower-value'), // 0
         document.getElementById('upper-value')  // 1
     ];
-  
+
     // Display the slider value and how far the handle moved
     // from the left edge of the slider.
     nonLinearSlider.noUiSlider.on('update', function ( values, handle, unencoded, isTap, positions ) {
         nodes[handle].innerHTML = values[handle];
     });
-  
+
   }
-  
+
 });
 
 

@@ -4,9 +4,9 @@
       <div class="card-product__img">
         <img style="height: 200px; width: auto" class="card-img" [src]="product.imagePath" alt="">
         <ul class="card-product__imgOverlay">
-          <li><button><i class="ti-search"></i></button></li>
-          <li><button><i class="ti-shopping-cart"></i></button></li>
-          <li><button><i class="ti-heart"></i></button></li>
+          <li></li>
+          <li><button (click)="addItem(product)"><i class="ti-shopping-cart"></i></button></li>
+          <li></li>
         </ul>
       </div>
       <div class="card-body">

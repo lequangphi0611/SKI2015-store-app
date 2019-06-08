@@ -20,4 +20,18 @@ export class CustomerService {
     return this.http.post<Customer>(this.URL_REQUEST, customer);
   }
 
+  existsEmail(email: string): Observable<boolean> {
+    return new Observable<boolean>(obs => {
+      this.findCustomer(email)
+        .subscribe({
+          next :  () => {
+            obs.next(true);
+          },
+          error : () => {
+            obs.next(false);
+          }
+        });
+    });
+  }
+
 }
