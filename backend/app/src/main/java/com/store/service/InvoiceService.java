@@ -7,4 +7,6 @@ import com.store.model.InvoiceDTO;
 public interface InvoiceService extends CrudService<InvoiceDTO, String> {
 
     Collection<InvoiceDTO> findByCustomerId(long id);
+
+    InvoiceDTO findByIdAndCustomerId(String invoiceId, long customerId);
 }

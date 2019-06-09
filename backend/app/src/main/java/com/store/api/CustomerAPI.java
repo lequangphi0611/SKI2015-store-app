@@ -56,6 +56,13 @@ public class CustomerAPI {
         return invoices;
     }
 
+    @GetMapping("/{customerId}/invoices/{invoiceId}")
+    public InvoiceDTO getInvoiceByCustomerAndId(@PathVariable long customerId, @PathVariable String invoiceId) {
+        InvoiceDTO invoice = invoiceService.findByIdAndCustomerId(invoiceId, customerId);
+        invoice.setDetailedInvoices((Set<DetailedInvoiceDTO>)detailedInvoiceService.findByInvoiceId(invoice.getId()));
+        return invoice;
+    }
+
     @PostMapping
     public CustomerDTO createCustomer(@RequestBody CustomerDTO customer) {
         return customerService.save(customer);

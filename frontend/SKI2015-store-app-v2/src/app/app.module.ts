@@ -30,6 +30,8 @@ import { ProductHomeComponent } from './home/product-home/product-home.component
 import { ImageChooseComponent } from './dashboard/image-choose/image-choose.component';
 import { RegisterComponent } from './register/register.component';
 import { CartComponent } from './home/cart/cart.component';
+import { CheckOutComponent } from './home/check-out/check-out.component';
+import { ConfirmationComponent } from './home/confirmation/confirmation.component';
 
 
 
@@ -52,7 +54,9 @@ import { CartComponent } from './home/cart/cart.component';
     ProductHomeComponent,
     ImageChooseComponent,
     RegisterComponent,
-    CartComponent
+    CartComponent,
+    CheckOutComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,

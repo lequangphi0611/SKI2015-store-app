@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Product } from './../../model/Product';
 import { CartItem } from './../../model/CartItem';
@@ -20,10 +21,12 @@ export class CartComponent implements OnInit, OnDestroy {
 
   constructor(
     private cartDataService: CartDataService,
-    private router: Router
+    private router: Router,
+    private title: Title
   ) { }
 
   ngOnInit() {
+    this.title.setTitle('Cart');
     this.cartDataSubcrition = this.cartDataService.cartData$
       .subscribe(cartItem => this.cart = cartItem);
   }

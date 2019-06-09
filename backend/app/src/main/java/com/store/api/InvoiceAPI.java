@@ -46,7 +46,7 @@ public class InvoiceAPI {
     }
 
     @PostMapping
-    public InvoiceDTO postMethodName(@RequestBody InvoiceDTO invoice) {
+    public InvoiceDTO getInvoices(@RequestBody InvoiceDTO invoice) {
         invoice.setId(generateInvoiceID(invoice.getPaymentDate()));
         InvoiceDTO invoiceSaved = invoiceService.save(invoice);
 

@@ -1,0 +1,49 @@
+<!--================Checkout Area =================-->
+<section class="checkout_area section-margin--small">
+  <div class="container ol-12">
+    <div class="billing_details">
+      <div class="container col-12">
+        <div class="col-lg-6">
+          <div class="order_box">
+            <h2>Your Order</h2>
+            <ul class="list">
+              <li>
+                <a
+                  ><h4>Product <span>Total</span></h4></a
+                >
+              </li>
+
+              <li *ngFor="let item of cart.data">
+                <a class="infor"
+                  >{{ item.product.name }}
+                  <span class="middle">x {{ item.quantity }}</span>
+                  <span class="last">{{
+                    item.product.price * item.quantity | currency
+                  }}</span></a
+                >
+              </li>
+            </ul>
+            <ul class="list list_2">
+              <li></li>
+              <li>
+                <a href="#"
+                  >Total <span>{{ cart.total() | currency }}</span></a
+                >
+              </li>
+            </ul>
+            <div class="text-center">
+              <button
+                class="button button-paypal"
+                (click)="proceedToPay()"
+                [hidden]="cart.data.length == 0"
+              >
+                Proceed to Paypal
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--================End Checkout Area =================-->

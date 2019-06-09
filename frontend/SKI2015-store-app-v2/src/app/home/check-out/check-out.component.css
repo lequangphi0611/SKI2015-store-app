@@ -1,0 +1,19 @@
+a:not([href]):not([tabindex]) {
+  cursor: pointer;
+  color: white;
+}
+
+a:not([href]):not([tabindex]):focus,
+a:not([href]):not([tabindex]):hover {
+  color: black;
+}
+
+.infor {
+  font-size: 14px;
+  color: #777 !important;
+  font-weight: normal;
+  border-bottom: 1px solid #eeeeee !important;
+  display: block;
+  line-height: 42px;
+  cursor: default !important;
+}

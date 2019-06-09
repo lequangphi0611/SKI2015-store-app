@@ -1,3 +1,4 @@
+import { CartDataService } from './../cart-data/cart-data.service';
 import { Role } from './../../model/role.enum';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
@@ -20,7 +21,7 @@ export class UserInfoStorageService {
 
   user$: Observable<UserInfo> = this.user.asObservable();
 
-  constructor() {
+  constructor(private cartDataService: CartDataService) {
     this.refresh();
    }
 
@@ -31,6 +32,7 @@ export class UserInfoStorageService {
 
   removeUser(): void {
     sessionStorage.removeItem(UserInfoStorageService.KEY);
+    this.cartDataService.destroy();
   }
 
   getUser(): UserInfo {

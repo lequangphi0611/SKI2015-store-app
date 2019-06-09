@@ -24,12 +24,15 @@ public class InvoiceServiceImpl extends AbstracCrudService<InvoiceDTO, Invoice, 
         super(repository);
         this.invoiceRepository = (InvoiceRepository) super.repository;
     }
-    
+
     @Override
     public Collection<InvoiceDTO> findByCustomerId(long id) {
-        return ((Collection<Invoice>) invoiceRepository.findByCustomerId(id))
-                    .stream()
-                    .map(mapper::mapDto)
-                    .collect(Collectors.toSet());
+        return ((Collection<Invoice>) invoiceRepository.findByCustomerId(id)).stream().map(mapper::mapDto)
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    public InvoiceDTO findByIdAndCustomerId(String invoiceId, long customerId) {
+        return mapper.mapDto(invoiceRepository.findByIdAndCustomerId(invoiceId, customerId));
     }
 }

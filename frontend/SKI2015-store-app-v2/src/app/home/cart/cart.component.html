@@ -94,7 +94,7 @@
               <td>
                 <div class="checkout_btn_inner d-flex align-items-center">
                   <a class="gray_btn" [routerLink]="['/home', 'products']" >Continue Shopping</a>
-                  <a class="primary-btn ml-2" href="#">Proceed to checkout</a>
+                  <a class="primary-btn ml-2" [routerLink]="['/home/check-out']" [hidden]='cart.data.length == 0' >Proceed to checkout</a>
                 </div>
               </td>
             </tr>

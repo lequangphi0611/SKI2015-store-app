@@ -1,3 +1,5 @@
+import { ConfirmationComponent } from './home/confirmation/confirmation.component';
+import { CheckOutComponent } from './home/check-out/check-out.component';
 import { CartComponent } from './home/cart/cart.component';
 import { AdminGuard } from './auth/admin.guard';
 import { AuthGuardGuard } from './auth/auth-guard.guard';
@@ -38,6 +40,14 @@ const routes: Routes = [
       {
         path : 'cart',
         component : CartComponent
+      },
+      {
+        path : 'check-out',
+        component : CheckOutComponent
+      },
+      {
+        path : 'confirmation/:invoiceId',
+        component : ConfirmationComponent
       },
       {
         path : '',
