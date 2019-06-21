@@ -34,17 +34,19 @@
           <tr>
             <th>No.</th>
             <th>Name Category</th>
+            <th>Product Count</th>
             <th></th>
             <th></th>
           </tr>
-          <tr *ngFor="let category of categories | async; let i = index">
+          <tr *ngFor="let item of categories; let i = index">
             <td>{{i + 1}}</td>
-            <td>{{category.name}}</td>
+            <td>{{item.category.name}}</td>
+            <td>{{item.productCount | async}}</td>
             <td>
-              <button (click)='enableEditMode(category); nameControl.focus()' type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button>
+              <button (click)='enableEditMode(item.category); nameControl.focus()' type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button>
             </td>
             <td>
-              <button type="button" class="btn btn-danger" (click)='delete(category.id)'>
+              <button type="button" class="btn btn-danger" (click)='delete(item.category.id)'>
                 <i class="fas fa-trash "></i>
               </button>
             </td>

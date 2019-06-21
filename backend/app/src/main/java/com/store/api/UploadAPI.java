@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 
-import com.store.exception.FileContentTypeNotAcceptedException;
 import com.store.service.Storage;
 import com.store.service.StorageProperties;
 import com.store.util.ResponseUpload;
@@ -65,7 +64,7 @@ public class UploadAPI {
             builderMessage.append(file.getContentType());
             builderMessage.append("' is not accepted !. File must have Content-type = '");
             builderMessage.append(String.join(", ", ACCEPT_IMAGE_TYPE));
-            throw new FileContentTypeNotAcceptedException(builderMessage.toString());
+            throw new Error(builderMessage.toString());
         }
 
         String newFileName = getFilenameFrom(file, fileName);
